@@ -95,22 +95,19 @@ text_to_analyze = choosen_text.split()
 print ("There are ", len(text_to_analyze), "words in the selected text.")
 
 # words sorting
-titlecase_words_all = []
+titlecase_words = []
 uppercase_words =[]
 lowercase_words = []
 numeric_strings = []
-for word in text_to_analyze:
-    first_letter = str(word[0])
-    if ord(first_letter) in range (65,90):
-        titlecase_words_all.append (word)
 
 for word in text_to_analyze:
+    titlecase_words = [word for word in text_to_analyze if word.istitle()]
     numeric_strings = [word for word in text_to_analyze if word.isdigit()]
     lowercase_words = [word for word in text_to_analyze if word.islower()]
-    uppercase_words = [word for word in text_to_analyze if word.isupper()]  
+    uppercase_words = [word for word in text_to_analyze if word.isupper()]
 
 # Titlecase words counting
-only_title = len(titlecase_words_all) - len(uppercase_words)
+only_title = len(titlecase_words)
 
 # statistic output
 print ("There are ", only_title , "titlecase words.")
@@ -118,6 +115,7 @@ print ("There are ", len(uppercase_words) , "uppercase words.")
 print ("There are ", len(lowercase_words) , "lowercase words.")
 print ("There are ", len(numeric_strings) , "numeric strings.")
 
+# sum of numeric strings
 # sum of numeric strings
 numb_sum = 0
 for num in numeric_strings:

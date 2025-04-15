@@ -14,10 +14,13 @@ databaze_uzivatelu ={
     "liz":"pass123"
     }
 
+# graphic separator
+separator = "-" * 34
+
 # username and password input
 username_in = input ("username: ")
 password_in = input ("password: ")
-print ("-" * 34)
+print (separator)
 
 # users nad passwords control
 if username_in in databaze_uzivatelu:
@@ -60,12 +63,12 @@ texts = [
 ]
 
 # checking amount of texts
-print (f"We have  {len(texts)}  texts to be analyzed.")
-print ("-" * 34)
+print (f"We have {len(texts)} texts to be analyzed.")
+print (separator)
 
 # text choice
 text_choice = input(f"Enter a number btw. 1 and {len(texts)} to select: ")
-print ("-" * 34)
+print (separator)
 
 # ValueError check
 try:
@@ -127,9 +130,7 @@ print (f"There are {len(titlecase_words)} titlecase words.")
 print (f"There are {len(uppercase_words)} uppercase words.")
 print (f"There are {len(lowercase_words)} lowercase words.")
 print (f"There are {len(numeric_strings)} numeric strings.")
-print (f"The sum of all numbers is: {numb_sum}")
-print (separator)
-print ("LEN","|", "OCCURENCES", " " * 11, "|", "NR.")
-print (separator)
+print (f"The sum of all numbers is: {numb_sum}\n{separator}")
+print (f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
 for i in range (1, max_word_length+1):
     print (f"{i:>3} | {"*" * int(rate_by_length.get (i)):<22} | {int(rate_by_length.get (i)):<3}")

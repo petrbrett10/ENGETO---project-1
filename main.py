@@ -97,9 +97,6 @@ numeric_strings = [word for word in text_to_analyze if word.isdigit()]
 lowercase_words = [word for word in text_to_analyze if word.islower()]
 uppercase_words = [word for word in text_to_analyze if word.isupper()]
 
-# Titlecase words counting
-only_title = len(titlecase_words)
-
 # sum of numeric strings
 numb_sum = 0
 for num in numeric_strings:
@@ -123,19 +120,16 @@ for i in range (0,max_word_length+1):
            length_rate += 1
     rate_by_length[i]=length_rate
 
-# statistic output by type of word
+# statistic nd graphic output
+separator = "-" * 34
 print (f"There are {len(text_to_analyze)} words in the selected text.")
 print (f"There are {len(titlecase_words)} titlecase words.")
 print (f"There are {len(uppercase_words)} uppercase words.")
 print (f"There are {len(lowercase_words)} lowercase words.")
 print (f"There are {len(numeric_strings)} numeric strings.")
 print (f"The sum of all numbers is: {numb_sum}")
-
-# graphic output
-print ("-" * 34)
-print ("LEN ","|", "OCCURENCES", " " * 10, "|", "NR.")
-print ("-" * 34)
+print (separator)
+print ("LEN","|", "OCCURENCES", " " * 11, "|", "NR.")
+print (separator)
 for i in range (1, max_word_length+1):
-    star_amount = int(rate_by_length.get (i))
-    stars = "*" * int(star_amount)
-    print (f"{i:>3}  | {stars:<22}| {star_amount:<3}")  
+    print (f"{i:>3} | {"*" * int(rate_by_length.get (i)):<22} | {int(rate_by_length.get (i)):<3}")

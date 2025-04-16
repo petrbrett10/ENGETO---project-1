@@ -140,4 +140,4 @@ print(f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
 # we would add a condition to the loop to print the occurrence if it
 # is greater than 0.("if int(occu.get (i)) > 0")
 for i in range (1, max_word_length+1):
-    print(f"{i:>3} | {"*" * int(occu.get (i)):<22} | {int(occu.get (i)):<3}")
+    print(f"{i:>3} | {"*" * int(occu.get(i)):<22} | {int(occu.get(i)):<3}")

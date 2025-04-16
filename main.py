@@ -6,7 +6,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Petr Brettschneider
 email: petrbrettschneider@gmail.com
 """
-# users database
+# user database
 databaze_uzivatelu ={
     "bob":"123" , 
     "ann":"pass123" , 
@@ -22,7 +22,7 @@ username_in = input ("username: ")
 password_in = input ("password: ")
 print (separator)
 
-# users nad passwords control
+# user and password control
 if username_in in databaze_uzivatelu:
     if password_in == (databaze_uzivatelu.get (username_in)):
         print ("Welcome to the app,", username_in, ".")
@@ -33,7 +33,7 @@ else:
     print ("Unregistred user. Terminating the program.")
     exit()
 
-# texts for analyze
+# input texts for analysis
 texts = [
     '''Situated about 10 miles west of Kemmerer,     
     Fossil Butte is a ruggedly impressive
@@ -62,11 +62,11 @@ texts = [
     garpike and stingray are also present.'''
 ]
 
-# checking amount of texts
+# determining the number of texts to analyze
 print (f"We have {len(texts)} texts to be analyzed.")
 print (separator)
 
-# text choice
+# selection of text for analysis
 text_choice = input(f"Enter a number btw. 1 and {len(texts)} to select: ")
 print (separator)
 
@@ -78,7 +78,7 @@ except ValueError:
     exit()
 text_choice = int(text_choice)
 
-# text select check
+# correctness check selection of text for analysis (selection within a range)
 if text_choice < 1 or text_choice > len(texts):
     print ("Wrong choice. Program terminated.")
     exit()
@@ -87,33 +87,35 @@ if text_choice < 1 or text_choice > len(texts):
 text_choice -= 1
 choosen_text = texts[text_choice]
 
-# ".", "," deleting from selected text
-choosen_text = choosen_text.replace(".","")
-choosen_text = choosen_text.replace(",","")
+# deleting unwanted characters from text (prepared for next texts, 
+# the list of unwanted characters should be continuously expanded according to the input texts)
+unwanted_char = [".",",",":","?","(",")","!","%","+","/"]
+for char in unwanted_char:
+    choosen_text = choosen_text.replace(char,"")
 
-# selected text split
+# dividing selected text into words
 text_to_analyze = choosen_text.split()
 
-# words counting
+# dividing words by type into separate lists
 titlecase_words = [word for word in text_to_analyze if word.istitle()]
 numeric_strings = [word for word in text_to_analyze if word.isdigit()]
 lowercase_words = [word for word in text_to_analyze if word.islower()]
 uppercase_words = [word for word in text_to_analyze if word.isupper()]
 
-# sum of numeric strings
+# the sum of words that are numeric
 numb_sum = 0
 for num in numeric_strings:
     num_int = int(num)
     numb_sum += num_int
 
-# longest word search
+# finding the longest word (for later statistical graphic output)
 max_word_length=0
 for word in text_to_analyze:
     word_length = len(word)
     if word_length > max_word_length:
-        max_word_length = word_length # nr of letters in longest word
+        max_word_length = word_length # nr of characters in longest word
 
-# sum of rate by word length
+# number of occurrences according to the length of individual words
 rate_by_length  = {}
 for i in range (0,max_word_length+1):
     length_rate = 0
@@ -123,8 +125,7 @@ for i in range (0,max_word_length+1):
            length_rate += 1
     rate_by_length[i]=length_rate
 
-# statistic nd graphic output
-separator = "-" * 34
+# statistical graphic output 
 print (f"There are {len(text_to_analyze)} words in the selected text.")
 print (f"There are {len(titlecase_words)} titlecase words.")
 print (f"There are {len(uppercase_words)} uppercase words.")
@@ -132,5 +133,7 @@ print (f"There are {len(lowercase_words)} lowercase words.")
 print (f"There are {len(numeric_strings)} numeric strings.")
 print (f"The sum of all numbers is: {numb_sum}\n{separator}")
 print (f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
+# items (word lengths) with zero occurrences are intentionally listed in the graphic output
+# so that the user can see that this was also taken into account during the analysis.
 for i in range (1, max_word_length+1):
     print (f"{i:>3} | {"*" * int(rate_by_length.get (i)):<22} | {int(rate_by_length.get (i)):<3}")

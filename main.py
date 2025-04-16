@@ -7,7 +7,7 @@ author: Petr Brettschneider
 email: petrbrettschneider@gmail.com
 """
 # user database
-databaze_uzivatelu ={
+databaze_uzivatelu = {
     "bob":"123" , 
     "ann":"pass123" , 
     "mike":"password123" , 
@@ -18,19 +18,19 @@ databaze_uzivatelu ={
 separator = "-" * 34
 
 # username and password input
-username_in = input ("username: ")
-password_in = input ("password: ")
+username_in = input("username: ")
+password_in = input("password: ")
 print (separator)
 
 # user and password control
 if username_in in databaze_uzivatelu:
     if password_in == (databaze_uzivatelu.get (username_in)):
-        print ("Welcome to the app,", username_in, ".")
+        print("Welcome to the app,", username_in, ".")
     else: 
-        print ("Wrong password. Terminating the program.")
+        print("Wrong password. Terminating the program.")
         exit()
 else:
-    print ("Unregistred user. Terminating the program.")
+    print("Unregistred user. Terminating the program.")
     exit()
 
 # input texts for analysis
@@ -63,23 +63,23 @@ texts = [
 ]
 
 # determining the number of texts to analyze
-print (f"We have {len(texts)} texts to be analyzed.\n{separator}")
+print(f"We have {len(texts)} texts to be analyzed.\n{separator}")
 
 # selection of text for analysis
 text_choice = input(f"Enter a number btw. 1 and {len(texts)} to select: ")
-print (separator)
+print(separator)
 
 # ValueError check
 try:
-    int (text_choice)
+    int(text_choice)
 except ValueError:
-    print ("Wrong choice. Program terminated.")
+    print("Wrong choice. Program terminated.")
     exit()
 text_choice = int(text_choice)
 
-# correctness check selection of text for analysis (selection within a range)
-if text_choice < 1 or text_choice > len(texts):
-    print ("Wrong choice. Program terminated.")
+# correctness check selection of text for analysis (selection within a range)'
+if not text_choice in range(1,len(texts)):
+    print("Wrong choice. Program terminated.")
     exit()
 
 # selected text
@@ -87,7 +87,8 @@ text_choice -= 1
 choosen_text = texts[text_choice]
 
 # deleting unwanted characters from text (prepared for next texts, 
-# the list of unwanted characters should be continuously expanded according to the input texts)
+# the list of unwanted characters should be continuously expanded 
+# according to the input texts)
 unwanted_char = [".",",",":","?","(",")","!","%","+","/"]
 for char in unwanted_char:
     choosen_text = choosen_text.replace(char,"")
@@ -115,24 +116,27 @@ for word in text_to_analyze:
         max_word_length = word_length # nr of characters in longest word
 
 # number of occurrences according to the length of individual words
-rate_by_length  = {}
-for i in range (0,max_word_length+1):
+occu  = {}
+for i in range (1,max_word_length+1):
     length_rate = 0
     for word in text_to_analyze:
         word_length = len(word)
         if word_length == i:
            length_rate += 1
-    rate_by_length[i]=length_rate
+    occu[i] = length_rate
 
 # statistical graphic output 
-print (f"There are {len(text_to_analyze)} words in the selected text.")
-print (f"There are {len(titlecase_words)} titlecase words.")
-print (f"There are {len(uppercase_words)} uppercase words.")
-print (f"There are {len(lowercase_words)} lowercase words.")
-print (f"There are {len(numeric_strings)} numeric strings.")
-print (f"The sum of all numbers is: {numb_sum}\n{separator}")
-print (f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
-# Items (word lengths) with zero occurrences are intentionally listed in the graphic output
-# so that the user can see that this was also taken into account during the analysis.
+print(f"There are {len(text_to_analyze)} words in the selected text.")
+print(f"There are {len(titlecase_words)} titlecase words.")
+print(f"There are {len(uppercase_words)} uppercase words.")
+print(f"There are {len(lowercase_words)} lowercase words.")
+print(f"There are {len(numeric_strings)} numeric strings.")
+print(f"The sum of all numbers is: {numb_sum}\n{separator}")
+print(f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
+# Items (word lengths) with zero occurrences are intentionally listed
+# in the graphic output so that the user can see that this was also taken
+# into account during the analysis. If we wanted to shorten the notation, 
+# we would add a condition to the loop to print the occurrence if it
+# is greater than 0.("if int(occu.get (i)) > 0")
 for i in range (1, max_word_length+1):
-    print (f"{i:>3} | {"*" * int(rate_by_length.get (i)):<22} | {int(rate_by_length.get (i)):<3}")
+    print(f"{i:>3} | {"*" * int(occu.get (i)):<22} | {int(occu.get (i)):<3}")

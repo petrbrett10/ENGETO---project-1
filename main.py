@@ -78,7 +78,7 @@ except ValueError:
 text_choice = int(text_choice)
 
 # correctness check selection of text for analysis (selection within a range)'
-if not text_choice in range(1,len(texts)):
+if not text_choice in range(1,len(texts)+1):
     print("Wrong choice. Program terminated.")
     exit()
 
@@ -133,11 +133,9 @@ print(f"There are {len(lowercase_words)} lowercase words.")
 print(f"There are {len(numeric_strings)} numeric strings.")
 print(f"The sum of all numbers is: {numb_sum}\n{separator}")
 print(f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
-
-# Items (word lengths) with zero occurrences are intentionally listed
-# in the graphic output so that the user can see that this was also taken
-# into account during the analysis. If we wanted to shorten the notation, 
-# we would add a condition to the loop to print the occurrence if it
-# is greater than 0.("if int(occu.get (i)) > 0")
+# The lengths of words with zero occurrences are not printed in the graphic
+# display. The overview is more concise. If we wanted to display zero occurrences
+# as well, we would cancel the condition in the loop.
 for i in range (1, max_word_length+1):
-    print(f"{i:>3} | {"*" * int(occu.get(i)):<22} | {int(occu.get(i)):<3}")
+    if int(occu.get (i)) > 0:
+        print(f"{i:>3} | {"*" * int(occu.get(i)):<22} | {int(occu.get(i)):<3}")

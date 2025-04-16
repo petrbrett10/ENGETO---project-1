@@ -63,8 +63,7 @@ texts = [
 ]
 
 # determining the number of texts to analyze
-print (f"We have {len(texts)} texts to be analyzed.")
-print (separator)
+print (f"We have {len(texts)} texts to be analyzed.\n{separator}")
 
 # selection of text for analysis
 text_choice = input(f"Enter a number btw. 1 and {len(texts)} to select: ")
@@ -133,7 +132,7 @@ print (f"There are {len(lowercase_words)} lowercase words.")
 print (f"There are {len(numeric_strings)} numeric strings.")
 print (f"The sum of all numbers is: {numb_sum}\n{separator}")
 print (f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
-# items (word lengths) with zero occurrences are intentionally listed in the graphic output
+# Items (word lengths) with zero occurrences are intentionally listed in the graphic output
 # so that the user can see that this was also taken into account during the analysis.
 for i in range (1, max_word_length+1):
     print (f"{i:>3} | {"*" * int(rate_by_length.get (i)):<22} | {int(rate_by_length.get (i)):<3}")

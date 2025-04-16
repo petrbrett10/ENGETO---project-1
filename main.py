@@ -133,6 +133,7 @@ print(f"There are {len(lowercase_words)} lowercase words.")
 print(f"There are {len(numeric_strings)} numeric strings.")
 print(f"The sum of all numbers is: {numb_sum}\n{separator}")
 print(f"LEN | {"OCCURENCES":<22} | NR.\n{separator}")
+
 # Items (word lengths) with zero occurrences are intentionally listed
 # in the graphic output so that the user can see that this was also taken
 # into account during the analysis. If we wanted to shorten the notation, 
